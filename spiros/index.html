@@ -34,18 +34,18 @@
 			</ul>
 		</footer>
 	</nav>
+	<a href="#" class="slideout-menu-toggle">
+		<div class="hamburger" id="hamburger">
+			<span class="line"></span>
+			<span class="line"></span>
+			<span class="line"></span>
+		  </div>
+		<div class="menu-bg"></div>
+	</a>
 	<div id="mask"></div>
 	<header class="cf">
 		<a href="index.html" id="logo-head" title="Back to Top">
 			<img src="images/logo-head.png" alt="Spiro" title="Spiro">
-		</a>
-		<a href="#" class="slideout-menu-toggle">
-			<div class="menu-icon">
-				<div class="mobile-menu">
-					<div class="bars"></div>
-				</div>
-			</div>
-			<div class="menu-bg"></div>
 		</a>
 	</header>
 	<main id="content">
@@ -124,9 +124,9 @@
 		//lets us know JS is on the page
 		$(document).ready(function(){
 			$('html').removeClass('no-js').addClass('js');
-			
+
 		})
-		 
+
 
 		//basic implementation
 		$('.bxslider').bxSlider();
@@ -161,44 +161,22 @@
 			}
 		});
 
-		var p = 0;
-
 		//clicking on menu button will toggle side menu
 		$(".slideout-menu-toggle").click(function(event) {
 			event.preventDefault();
-				$('.slideout-menu').toggleClass("open");
-			//if the menu was not out, initiate arrow sequence
-			if (p == 0) {
-				$(".mobile-menu").addClass("animate-1").removeClass("animate-2");
-				$("#mask").addClass("mask");
-				p++;
-			//or if the menu was already out, initiate hamburger sequence
-			} else if (p == 1) {
-				$("#mask").removeClass("mask");
-				$(".mobile-menu").addClass("animate-2").removeClass("animate-1");
-				
-				p = 0;
-			}
-		}); //end click on .smt
+				$('.slideout-menu').toggleClass('open');
+				$('.hamburger').toggleClass('is-active');
+				$('#mask').toggleClass('mask');
+		});
 
 		//disable menu when you click anywhere on the mask
-		$("#mask").click(function(event) {
+		$('#mask').click(function(event) {
 			event.preventDefault();
-				$(this).toggleClass("mask");
-				$('.slideout-menu').toggleClass("open");
-			//if the menu was not out, initiate arrow sequence
-			if (p == 0) {
-				$(".mobile-menu").addClass("animate-1").removeClass("animate-2");
-				p++;
-			//or if the menu was already out, initiate hamburger sequence
-			} else if (p == 1) {
-				$(".mobile-menu").addClass("animate-2").removeClass("animate-1");
-				
-				p = 0;
-			}
-		}); //end click on #mask
-		
+				$(this).toggleClass('mask');
+				$('.slideout-menu').toggleClass('open');
+				$('.hamburger').toggleClass('is-active');
 
+		});
 
 // 	$(".arrow-click").click(function() {
 // 		event.preventDefault();
@@ -208,12 +186,6 @@
 // 	$( "#target" ).scroll(function() {
 //   $( "#log" ).append( "<div>Handler for .scroll() called.</div>" );
 // });
-
-
-
-
-
-
 
 	</script>
 </body>
