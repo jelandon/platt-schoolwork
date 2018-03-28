@@ -1,0 +1,109 @@
+#drawer-toggle, #drawer-toggle-label{
+	display:none;
+	@include animate();
+}
+
+@media screen and (max-width:$breakpoint-1 - 1px){	
+	#drawer-toggle {
+		display:block;
+		position: absolute;
+		opacity: 0;
+	}
+
+	#drawer-toggle-label {
+		@include admin-sticky-fix();
+		display:block;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		right: 0px;
+		top:0;
+		height: 50px;
+		width: 50px;
+		display: block;
+		position: fixed;
+		z-index: 9999;
+		text-align: right;
+		background-color:rgba($main-color,.3);
+	}
+
+	/* adds our "hamburger" menu icon */
+	#drawer-toggle-label:before {
+		@include animate();
+		content: "";
+		display: block;
+		position: absolute; 
+		right: 13px; 
+		top: 18px; 
+		height: 2px;
+		width: 24px;
+		font-size:1.5em;
+		line-height: 1;
+		color:transparent;
+		background: $header-text-color;
+		box-shadow: 0 6px 0 $header-text-color, 0 12px 0 $header-text-color;
+	}
+
+	/* drawer menu pane - note the 0px width */
+
+	#menu {
+		@include admin-sticky-fix();
+		@include animate();
+		margin:0;
+		padding:0;
+		position: fixed;
+		top: 0;
+		left: -$drawer-width;
+		width: $drawer-width;
+		height: 100%;
+		background: $drawer-color;
+		overflow: hidden;
+		padding: 20px;
+		z-index:1000;
+		-webkit-overflow-scrolling: touch;
+		text-align: right;
+		li{
+			border-bottom:solid 1px rgba($header-text-color, .1)
+		}
+	}
+
+	/* checked styles (menu open state) */
+
+	#drawer-toggle:checked ~ #drawer-toggle-label {
+		height: 100%;
+		width: calc(100% - #{$drawer-width});
+		background: rgba(0,0,0,.4); 
+	}
+	#drawer-toggle:checked ~#drawer-toggle-label:before{
+		content:'\2715';
+
+		box-shadow: none;
+		background:transparent;
+		font-family: sans-serif;
+		color:$header-text-color;
+	}
+	#drawer-toggle:checked ~ #menu {
+		left: 0px;
+	}
+
+	/* Menu item styles */
+
+	#menu ul {
+		list-style-type: none;
+	}
+
+	#menu ul a {
+		display: block;
+		padding: 10px;
+		color: #c7c7c7;
+		text-decoration: none;
+	}
+
+	#menu ul a:hover {
+		color: white;
+	}
+
+}

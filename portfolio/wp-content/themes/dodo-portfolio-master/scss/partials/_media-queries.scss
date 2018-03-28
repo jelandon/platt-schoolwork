@@ -1,0 +1,162 @@
+/* == Media Queries */
+@media screen and (min-width:$breakpoint-1) {
+	.header{
+		
+		.search-form, .searchform{
+			float:right;
+			clear:right;
+		}
+		.site-title{
+			font-size:150%;
+		}
+
+		 nav{
+			background-color:transparent;
+			position:static;
+			min-width: 0;
+			min-height: 0;
+			width:auto;
+		}
+		 nav li {
+			display: inline-block;
+		}
+		 nav ul ul{
+			z-index: 9999;
+			position:absolute;
+			left:0;
+			top:100%;
+			background: #eee;
+			min-width:200px;
+		}
+		 nav ul ul li{
+			float:none;
+			width:100%;
+		}
+		 nav ul ul ul{
+			left:100%;
+			top:0;
+		}
+		 nav ul ul a{
+			color:black;
+		}
+
+		 nav > ul li:hover > ul{
+			display:block;
+		}
+
+		/* dropdown indicator */
+		 nav .page_item_has_children a{
+			position: relative;
+			padding-right:1.5em;
+		}
+		 nav .page_item_has_children > a:after{
+			content: '';
+			position:absolute;
+			top:1em;
+			right:.5em;
+			width:0px;
+			height:0px;
+			border-top:solid .5em #ccc;
+			border-left:solid .3em transparent;
+			border-right:solid .3em transparent;
+			margin-left:.5em;
+		}
+		.children a{
+			color:black;
+		}
+	}
+	
+	
+	/* == Front page's header */
+
+	.home {
+		.header{
+			background-image: url(images/header.jpg);
+			background-size:cover;
+		background-attachment:fixed;
+
+			min-height:30em;
+			min-height: 90vh;
+			background-size:cover;
+			background-attachment: fixed;
+			background-position: center center;
+			position:relative;
+
+			.logo{
+				float:none;
+				width:auto;
+				position: absolute;
+				text-align: center;
+				left:30%;
+				right:30%;
+				top:10vh;
+				max-width:none;
+			}
+		}
+		.header .wrapper{
+			position: static;
+			padding:1px;
+		}
+		h1.site-title{	
+			margin-top:35vh;	
+			margin-bottom:0;
+			width:100%;
+			font-size:3em;
+			text-transform: uppercase;
+			text-align: center;
+			text-shadow: 2px 2px 6px #0B1C52;
+		} 
+
+		.header h2{
+			font-size:2em;
+			margin:.5rem 0;
+			width:100%;
+			text-align: center;
+			color:$header-text-color;
+			text-shadow: 2px 2px 6px #0B1C52;
+			font-weight: normal;
+
+		}
+		.header nav{
+			position: absolute;
+			top:0;
+			left:0;
+			width:100%;
+			margin:0;
+		}
+	}//.home 
+
+
+	.content {
+		float: left;
+		width: 70%;
+	}
+	.sidebar {
+		float: right;
+		width: 30%;
+	}
+	/* single pages - no sidebar */
+	.page .content{
+		width:100%;
+		float:none;
+		margin:auto;
+	}
+	.page .content h2{
+		text-align: center;
+	}
+
+	/* Custom template: page with sidebar */
+	.page-template-custom-page-with-sidebar .content{
+		width:70%;
+		float:left;
+	}
+
+
+	.footer {
+		border-top: solid 1px #ddd;
+		clear: both;
+		text-align: center;
+	}
+	/* Custom Logo */
+	
+}//end media query

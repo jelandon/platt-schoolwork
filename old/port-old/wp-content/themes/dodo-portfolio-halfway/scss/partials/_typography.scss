@@ -1,0 +1,13 @@
+//This file affects the user-facing side and the editor-style in the admin panel
+body{
+	font-family:$body-font;
+	line-height:1.4;
+	color:$content-color;
+}
+a{
+	color:$link-color;
+	text-decoration:none;
+}
+h1, h2, h3, h4, h5, h6{
+	font-family:$heading-font;
+}

@@ -1,0 +1,52 @@
+.header{
+	text-align:center;
+	background: $header-color;
+	color: white;
+	padding: 1em;
+	//custom background image
+	background-size: cover;
+	background-position: center center;
+}
+.home .header{
+	min-height: 100vh;
+}
+.postmeta{
+	background:rgba(black, .03);
+	padding:$gutter/2;
+	ul{
+		@include reset-list;
+		display: inline;
+	}
+	li{
+		display: inline;
+	}
+}
+
+
+.footer{
+	background: darken($header-color, 20);
+	padding: 1em;
+}
+
+@media screen and (min-width:600px){
+	//menu
+	.pagenav > ul{
+		@include reset_list;
+
+		@include flexbox;
+		@include justify-content(space-between);
+	}
+	.wrapper{
+		@include flexbox;
+		max-width:1400px;
+		margin:auto;
+	}
+	.content{
+		width:60%;
+		padding:1em;
+	}
+	.sidebar{
+		width:40%;
+		padding:1em;
+	}
+}

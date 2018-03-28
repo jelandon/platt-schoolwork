@@ -1,0 +1,12 @@
+2017-12-20T19:50:20+00:00 CRITICAL Cannot use object of type WP_Term as array
+
+2017-12-20T19:50:21+00:00 CRITICAL Cannot use object of type WP_Term as array
+
+2018-01-02T19:27:46+00:00 CRITICAL Call to undefined function wp_wnqueue_style()
+
+2018-01-02T19:57:15+00:00 CRITICAL Call to undefined function jel_slider()
+
+2018-01-02T19:57:16+00:00 CRITICAL Call to undefined function jel_slider()
+
+2018-01-09T18:24:54+00:00 CRITICAL Call to undefined function remove_fiulter()
+

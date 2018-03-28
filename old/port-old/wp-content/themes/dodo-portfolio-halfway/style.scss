@@ -1,0 +1,42 @@
+/*
+Theme Name: Dodo Portfolio
+Author: Melissa Cabral
+Description: A theme for learning how to theme
+Version: 0.1
+License: GPLv3
+*/
+
+@import 'scss/modules/colors';
+@import 'scss/modules/variables';
+@import 'scss/modules/mixins';
+@import 'scss/vendor/flexbox';
+@import 'scss/partials/reset';
+@import 'scss/partials/typography';
+@import 'scss/partials/layout';
+@import 'scss/partials/navigation';
+@import 'scss/partials/wordpress-core';
+
+
+body{
+	background: $background;	
+}
+
+
+
+//current menu page
+.current_page_item > a{
+	background: white;
+}
+
+.pagination{
+	@include flexbox;
+	@include justify-content(space-between);
+}
+
+//pagination
+.pagination a{
+	@include button(hotpink);
+}
+
+
+

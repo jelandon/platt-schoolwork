@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Space Lasers</title>
+	<style type="text/css">
+		body{
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 35px;
+			font-family: Verdana;
+			background-color: rgba(0,0,0,.95);
+			color: white;
+		}
+		h1{
+			font-size: 1.5em;
+			text-align: center;
+			width: 100%;
+		}
+		p{
+			text-align: center;
+			font-weight: bold;
+		}
+		.button{
+			width: 300px;
+			height: 100px;
+			line-height: 100px;
+			font-size: 50px;
+			margin: 0 auto;
+			background-color: orangered;
+			color: white;
+			border-radius: 30px;
+			cursor: pointer;
+			text-align: center;
+		}
+		.button:hover{
+			background-color: orange;
+		}
+		#stage{
+			position: relative;
+			margin: 0 auto;
+			width: 700px;
+			height: 100vh;
+			background-image: url(images/background.png);
+			background-repeat: repeat-y;
+			background-position: 0px 0px;
+			overflow: hidden;
+		}
+		#player{
+			position: absolute;
+			bottom: 10px;
+			left: 330px;
+			background-image: url(images/playerSprite.png);
+			width: 48px;
+			height: 50px;
+			background-position: 0px 0px;
+		}
+		.laser{
+			position: absolute;
+			background-image: url(images/Spritesheet.png);
+			width:6px;
+			height:22px;
+			background-position: -19px -2px;
+		}
+		.enemy{
+			position: absolute;
+			width: 64px;
+			height: 64px;
+		}
+		.enemyShip{
+			position: absolute;
+			width: 64px;
+			height: 64px;
+			background-image: url(images/Spritesheet.png);
+			background-position: -266px -873px;
+		}
+		.mine{
+			position: absolute;
+			background-image: url(images/Spritesheet.png);
+			width: 50px;
+			height: 50px;
+			background-position: -252px -200px;
+		}
+		.shield{
+			position: absolute;
+			background-image: url(images/shieldSprite.png);
+			width: 48px;
+			height: 48px;
+			background-position: 0px 0px;
+		}
+		.power{
+			position: absolute;
+			background-image: url(images/powerSprite.png);
+			width: 50px;
+			height: 50px;
+			background-position: -402px -350px;
+		}
+		#lifebar{
+			position: absolute;
+			top: 5px;
+			right: 5px;
+		}
+		.lives{
+			height: 38px;
+			width: 36px;
+			background-image: url(images/playerSmall.png);
+		}
+		.death{
+			height: 38px;
+			width: 36px;
+			background-image: url(images/playerSmallDead.png);
+		}
+		.boom{
+			width: 54px;
+			height: 54px;
+			position: absolute;
+			background-image: url('images/Spritesheet.png');
+			background-position: -434px -556px;
+		}
+		.powerBoom{
+			width: 50px;
+			height: 50px;
+			position: absolute;
+			background-image: url('images/powerBoom.png');
+			background-position: 0px 0px;
+		}
+		.mineBoom{
+			width: 50px;
+			height: 50px;
+			position: absolute;
+			background-image: url('images/mineBoom.png');
+			background-position: 0px 0px;
+		}
+		.bubble{
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			background-color: rgba(252, 225, 126, .5);
+			border: 2px solid rgba(252, 225, 126, .85);
+			border-radius: 100px;
+		}
+	</style>
+</head>
+<body>
+	<div id="stage">
+		<div id="lifebar">
+			<div class="lives"></div>
+			<div class="lives"></div>
+			<div class="lives"></div>
+		</div>
+		<div id="player"></div>
+		<div class="intro">
+			<h1>Space Lasers</h1>
+			<p>Move with arrow keys or ASWD and destroy the enemy before they destroy you!</p>
+			<div class="button start">Start Game</div>
+		</div>
+	</div>
+<script type="text/javascript" src="scripts/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="scripts/jquery-ui.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.spritely.js"></script>
+<script type="text/javascript">
+	var player = $('#player'),
+		stage = $('#stage'),
+		gameRunning = false, //stores if game is active
+		speed = 5, //how many pixels/keydown the player moves
+		score = 0, //player's score
+		extraLives = 3, //how many times player can regenerate
+		createEnemy,
+		createPLaser,
+		bgY = 0, //starting BG vertical position
+		bgSpeed = 2, // # of pixels to move each time funciton is called
+		theLoop;
+
+	//JSON object that represents the direction the player wants to move
+	var dir = {
+				up: false,
+				down: false,
+				left: false,
+				right: false
+	}
+	
+	var isExploding = false,
+		isSpinning = false,
+		isPowering = false,
+		mineExploding = false,
+		playerDying = false,
+		bubble = false;
+
+	//start function
+	$('.start').click(startGame);
+
+	function startGame(){
+		createPLaser = setInterval(pShootLaser, 400);
+		stage.pan({fps: 30, speed: 4, dir: 'down'});
+
+		//reset stuff
+		$('#player, #lifebar').show();
+		$('.death').removeClass('death').addClass('lives');
+		gameRunning = true;
+		score = 0
+		extraLives = 3;
+		theLoop = window.requestAnimationFrame(gameLoop);
+		$('.intro').hide();
+		$(function() {
+			randCreateEnemy();
+		});
+		setTimeout(function() {
+			randCreateMine();
+		}, 500);
+		setTimeout(function() {
+			randCreateShield();
+		}, 7500);
+		setTimeout(function() {
+			randCreatePower();
+		}, 2500);
+	}//end startGame
+
+
+
+
+	//event listeners
+	$(document).keydown(function(e){
+		//console.log(e.which);
+		//38=up || 87=w
+		if(e.which == 38 || e.which == 87){
+			dir.up = true;
+		}
+		//40=down || 83=s
+		if(e.which == 40 || e.which == 83){
+		dir.down = true;
+		}
+		//37=left || 65=a
+		if(e.which == 37 || e.which == 65){
+			dir.left = true;
+		}
+		//39=right || 87=d
+		if(e.which == 39 || e.which == 68){
+			dir.right = true;
+		}
+		//16=shift
+		if(e.which == 16){
+			speed = 10;
+		}
+	}); //end keydown
+	$(document).keyup(function(e){
+		if(e.which == 38 || e.which == 87){
+			dir.up = false;
+		}
+		if(e.which == 40 || e.which == 83){
+			dir.down = false;
+		}
+		if(e.which == 37 || e.which == 65){
+			dir.left = false;
+		}
+		if(e.which == 39 || e.which == 68){
+			dir.right = false;
+		}
+		if(e.which == 16){
+			speed = 5;
+		}
+		if(e.which == 27){
+			stage.destroy();
+			gameRunning = false;
+		}
+	}); //end keyup
+
+
+	//functions
+	function gameLoop(){
+		var newTop = 0; //temp value of player's top
+		var newLeft = 0; //temp value of player's left
+
+		// if up is pressed, move the player's top up by the amount of speed
+		if(dir.up){
+			newTop -=speed;
+		}
+		// if dowm is pressed, move the player's top down by the amount of speed
+		if(dir.down){
+			newTop +=speed;
+		}
+		// if left is pressed, move the player's left to the left by the amount of speed
+		if(dir.left){
+			newLeft -=speed;
+			
+		}
+		// if right is pressed, move the player's left to the right by the amount of speed
+		if(dir.right){
+			newLeft +=speed;
+		}
+
+		if(dir.right == false && dir.left == true){
+			player.css({'background-position':'-48px 0px'});
+		}
+
+		if(dir.left == false && dir.right == true){
+			player.css({'background-position':'-48px -50px'});
+		}
+
+		if(dir.left == false && dir.right == false){
+			player.css({'background-position':'0px 0px'});
+		}
+
+		if(dir.left == true && dir.right == true){
+			player.css({'background-position':'0px 0px'});
+		}
+
+		var pTop = player.position().top; //current value of player's top
+		var pLeft = player.position().left;//current value of player's left
+	
+
+
+		
+
+		var pW = 48; //static value of player's width
+		var pH = 50; //static value of player's height
+
+		var sW = stage.width(); //current width of stage
+		var sH = stage.height(); //current height of stage
+		
+		//check boundaries before applying new CSS positions to player
+		if(pTop+newTop < 0){
+			newTop = 0;
+			newTop -+pTop; //moves top of player to top of stage 
+		}
+		if(pLeft+newLeft < 0){
+			newLeft = 0;
+			newLeft -=pLeft; //remaining distancve from where player is to stage 0
+		}
+		if(pTop+newTop+pH > sH){
+			newTop = 0;
+			newTop+=(sH-pTop-pH);
+		}
+		if(pLeft+newLeft+pW > sW){
+			newLeft = 0;
+			newLeft+=(sW-pLeft-pW);
+		}
+
+		//apply new values to player
+		player.css({top:'+='+newTop, left:'+='+newLeft});
+		
+
+		//detect hit for laser vs. enemy
+		$('.laser').each(function(){
+			//check each laser against all the enemies
+			var theLaser = $(this);
+			$('.enemy').each(function(){
+				var theEnemy = $(this);
+
+				if (recthit(theLaser, theEnemy)){
+					//returns true if hit has been detected
+
+					var enemyPos = theEnemy.position();
+					var enemyPosTop = enemyPos.top;
+					var enemyPosLeft = enemyPos.left;
+
+					var boom = $('<div>').addClass('boom').css({top:enemyPosTop, left:enemyPosLeft});
+
+					if(!isExploding){
+						isExploding = true;
+						stage.append(boom);
+						goBoom(boom);
+					}
+
+					theLaser.remove();
+					theEnemy.remove();
+
+					var points = 1;
+
+					score+=points;
+				}
+
+			})//end enemy each
+		})//end laser each
+
+		//detect hit for mine vs. player
+		$('.mine').each(function(){
+			//check each laser against all the enemies
+			var theMine = $(this);
+			$('#player').each(function(){
+				var thePlayer = $(this);
+
+				if (recthit(theMine, thePlayer)){
+					//returns true if hit has been detected
+
+					var minePosTop = theMine.position().top;
+					var minePosLeft = theMine.position().left;
+
+					var playerPosTop = thePlayer.position().top;
+					var playerPosLeft = thePlayer.position().left;
+
+
+
+					var mineBoom = $('<div>').addClass('mineBoom').css({top:minePosTop, left:minePosLeft});
+
+					var playerBoom = $('<div>').addClass('boom').css({top:playerPosTop, left:playerPosLeft});
+
+
+					if(!mineExploding){
+						//mineExploding = true;
+						stage.append(mineBoom);
+						goPower(mineBoom);
+					}
+
+					theMine.remove();
+					updateLives();
+
+				}	//end recthit mine vs player			
+
+			})//end player each
+
+			if(isPowering){
+				$('.laser').each(function(){
+					if (recthit(theMine, $(this))){
+						var minePosTop = theMine.position().top;
+						var minePosLeft = theMine.position().left;
+
+		
+						var mineBoom = $('<div>').addClass('mineBoom').css({top:minePosTop, left:minePosLeft});
+						theMine.remove();
+						$(this).remove();
+						stage.append(mineBoom);
+						goPower(mineBoom);
+					}
+				})//end laser each
+
+			}
+		})// end mine each
+
+		//enemy vs. player (one on one)
+		$('.enemy').each(function(){
+			if(recthit(player, $(this))){
+				var theEnemy = $(this);
+				var playerPosTop = player.position().top;
+				var playerPosLeft = player.position().left;
+
+				var theEnemyPosTop = theEnemy.position().top;
+				var theEnemyPosLeft = theEnemy.position().left;
+
+
+
+					var boom = $('<div>').addClass('boom').css({top:theEnemyPosTop, left:theEnemyPosLeft});
+
+					var playerBoom = $('<div>').addClass('boom').css({top:playerPosTop, left:playerPosLeft});
+
+				if(!isExploding){
+						isExploding = true;
+						stage.append(boom);
+						goBoom(boom);
+					}
+				//remove enemy not player
+				theEnemy.remove();
+				updateLives();
+			}
+		})
+
+		$('.shield').each(function(){
+			if(recthit(player, $(this))){
+				var thePowerUp = $(this);
+				var powerUpTop = thePowerUp.position().top;
+					var powerUpLeft = thePowerUp.position().left;
+				//remove enemy not player
+				thePowerUp.remove();
+
+				var powerBoom = $('<div>').addClass('powerBoom').css({top:powerUpTop, left:powerUpLeft});
+
+					if(!bubble){
+						bubble = true;
+						makeShield();
+						stage.append(powerBoom);
+						goPower(powerBoom);
+					}
+			}
+		})
+
+
+
+
+
+		$('.power').each(function(){
+			if(recthit(player, $(this))){
+				var thePowerUp = $(this);
+				var powerUpTop = thePowerUp.position().top;
+					var powerUpLeft = thePowerUp.position().left;
+				//remove enemy not player
+				thePowerUp.remove();
+
+				var powerBoom = $('<div>').addClass('powerBoom').css({top:powerUpTop, left:powerUpLeft});
+
+					if(!isPowering){
+						isPowering = true;
+						fasterLaser();
+						stage.append(powerBoom);
+						goPower(powerBoom);
+					}
+			}
+		})
+
+		if(bubble){
+			moveShield();
+			//enemy vs. bubble (one on one)
+			$('.enemy').each(function(){
+				var theBubble = $('.bubble');
+				if(recthit(theBubble, $(this))){
+					var theEnemy = $(this);
+					var playerPosTop = player.position().top;
+					var playerPosLeft = player.position().left;
+
+					var theEnemyPosTop = theEnemy.position().top;
+					var theEnemyPosLeft = theEnemy.position().left;
+
+
+
+					var boom = $('<div>').addClass('boom').css({top:theEnemyPosTop, left:theEnemyPosLeft});
+
+					var points = 1;
+					score+=points;
+
+					
+
+				
+				if(!isExploding){
+						isExploding = true;
+						stage.append(boom);
+						score++
+						goBoom(boom);
+					}
+				//remove enemy not player
+				theEnemy.remove();
+				
+			}//end bubble
+		})//end each enemy
+
+			$('.mine').each(function(){
+				var theBubble = $('.bubble');
+				if(recthit(theBubble, $(this))){
+					var theMine = $(this);
+
+					var playerPosTop = player.position().top;
+					var playerPosLeft = player.position().left;
+
+					var theMinePosTop = theMine.position().top;
+					var theMinePosLeft = theMine.position().left;
+
+
+
+					var mineBoom = $('<div>').addClass('mineBoom').css({top:theMinePosTop, left:theMinePosLeft});
+
+					var points = 1;
+					score+=points;
+
+					
+
+				
+				if(!mineExploding){
+						stage.append(mineBoom);
+						goPower(mineBoom);
+					}
+				//remove enemy not player
+				theMine.remove();
+				
+			}//end bubble
+		})//end each enemy
+
+		}//end bubble true
+
+
+		if(extraLives == 0){
+			gameOver();
+		}
+
+		if(gameRunning){
+			theLoop = window.requestAnimationFrame(gameLoop);
+		}
+	}//endGameLoop
+
+	function moveShield(){
+		var theBubble = $('.bubble');
+
+		var playerPosTop = player.position().top;
+		var playerPosLeft = player.position().left;
+
+		theBubble.css({top:playerPosTop-25, left: playerPosLeft-27});
+
+	}
+
+	function makeShield(){
+		var theBubble = $('<div>').addClass('bubble');
+
+		var playerPosTop = player.position().top;
+		var playerPosLeft = player.position().left;
+
+		theBubble.css({top:playerPosTop-25, left: playerPosLeft-27});
+
+		stage.append(theBubble);
+		setTimeout(function(){
+			$('.bubble').remove();
+			bubble = false;
+		}, 5000)
+
+	}
+
+	function fasterLaser(){
+
+		clearInterval(createPLaser)
+		createPLaser = setInterval(pShootLaser, 100);
+		setTimeout(function(){
+			clearInterval(createPLaser)
+			createPLaser = setInterval(pShootLaser, 400);
+			isPowering = false;
+		}, 5000)
+		isPowering = true;
+
+	}
+
+	function pShootLaser(){ 
+		var laser = $('<div>').addClass('laser');
+
+		//find out where the player is
+		var pTop = player.position().top;
+		var pLeft = player.position().left;
+
+		var sH = stage.height(); //current height of stage
+
+		var pW = 48; //static value of player's width
+		var pH = 50; //static value of player's height
+
+		//current size of player is 48x50
+		pTop -=11; //fire from the top
+		pLeft +=21 //fire from the horizontal middle (l to r)
+
+		//apply css to laser and append to stage
+		laser.css({top:pTop, left:pLeft});
+		stage.append(laser);
+
+		//animate laser from player to top of screen
+		laser.animate({top:'-='+1500}, 1500, 'linear', function(){
+			//remove laser when done animating
+			$(this).remove();
+		});//end animate
+	}//end pShootLaser
+
+
+
+
+	function createEnemy(){
+		if(gameRunning){
+		var enemy = $('<div>').addClass('enemy enemyShip');
+		var sH = stage.height(); //current height of stage
+
+		//apply a starting position
+		var eLeft = ((Math.random()*(stage.width()-300))+100);
+
+		enemy.css({top:'-64px', left:eLeft});
+
+		stage.append(enemy);
+
+		enemy.animate({top:'+='+1500}, 5000, 'linear', function(){
+			$(this).remove();
+		})//end animate
+	}
+
+	}//end createEnemy
+
+	//run the above createEnemy function at a random interval every 250ms to 2000ms
+	function randCreateEnemy(){
+		var randFunction = function() {
+			var theTimeout
+			createEnemy();
+			var rand = Math.round(Math.random() * (2250 - 750)) + 750;
+			if(gameRunning){
+			theTimeout = setTimeout(randFunction, rand);
+			}
+		}
+
+		randFunction();
+	}
+
+	function createMine(){
+		if(gameRunning){
+		var mine = $('<div>').addClass('mine');
+		var eLeft = ((Math.random()*(stage.width()-50)));
+
+		mine.css({top:'-50px', left:eLeft});
+
+		stage.append(mine);
+
+		spinMine(mine);
+
+		mine.animate({top:'+='+1500}, 13000, 'linear', function(){
+			$(this).remove();
+		})
+	}
+	}
+
+	//run the above createMine function at a random interval every 250ms to 2000ms
+	function randCreateMine(){
+		var randFunction = function() {
+			createMine();
+			var rand = Math.round(Math.random() * (10000 - 1000)) + 1000;
+			if(gameRunning){
+			setTimeout(randFunction, rand);
+		}
+		}
+
+		randFunction();
+	}
+
+	function createShield(){
+		if(gameRunning){
+		var shield = $('<div>').addClass('shield powerUp');
+		var eLeft = ((Math.random()*(stage.width()-50)));
+
+		shield.css({top:'-50px', left:eLeft});
+
+		stage.append(shield);
+
+		spinShield(shield);
+
+		shield.animate({top:'+='+1500}, 13000, 'linear', function(){
+			$(this).remove();
+		})
+	}
+	}
+
+	function randCreateShield(){
+		var randFunction = function() {
+			createShield();
+			var rand = Math.round(Math.random() * (20000 - 10000)) + 10000;
+			if(gameRunning){
+			setTimeout(randFunction, rand);
+		}
+		}
+
+		randFunction();
+	}
+
+	function createBubble(){
+		var bubble = $('<div>').addClass('bubble');
+
+	}
+
+	function createPower(){
+		if(gameRunning){
+		var power = $('<div>').addClass('power powerUp');
+		var eLeft = ((Math.random()*(stage.width()-50)));
+
+		power.css({top:'-50px', left:eLeft});
+
+		stage.append(power);
+
+		spinShield(power);
+
+		power.animate({top:'+='+1500}, 13000, 'linear', function(){
+			$(this).remove();
+		})
+	}
+	}
+
+	function randCreatePower(){
+		var randFunction = function() {
+			createPower();
+			var rand = Math.round(Math.random() * (25000 - 15000)) + 15000;
+			if(gameRunning){
+			setTimeout(randFunction, rand);
+		}
+	}
+		randFunction();
+	}
+
+
+	//a function to make a div explode
+	function goBoom(thisBoom){
+		if(thisBoom.frameNum == undefined){
+			//if it does not currently exist:
+			thisBoom.frameNum = 0;
+			isExploding = false;
+		}else{
+			thisBoom.frameNum++;
+		}
+
+		var frame = [8,7,6,5,4,3,2,1,0];
+		var frameWidth = 54;
+
+		if(thisBoom.frameNum == frame.length){
+			thisBoom.frameNum = 0;
+			$(thisBoom).remove();
+		}
+
+		var bgPos = -((frameWidth * (frame[thisBoom.frameNum]))+2);
+
+		$(thisBoom).css({'background-position':bgPos+'px -556px'});
+		
+		setTimeout(function(){
+			goBoom(thisBoom);
+		}, 1000/15);
+	}
+
+		//a function to make power-up activate
+	function goPower(thisPower){
+		if(thisPower.frameNum == undefined){
+			//if it does not currently exist:
+			thisPower.frameNum = 0;
+
+		}else{
+			thisPower.frameNum++;
+		}
+
+		var frame = [0,1,2,3,4,5,6,7,8];
+		var frameWidth = 50;
+
+		if(thisPower.frameNum == frame.length){
+			thisPower.frameNum = 0;
+			$(thisPower).remove();
+		}
+
+		var bgPos = -((frameWidth * (frame[thisPower.frameNum])));
+
+		$(thisPower).css({'background-position':bgPos+'px 0px'});
+		
+		setTimeout(function(){
+			goPower(thisPower);
+		}, 1000/15);
+	}
+
+	function spinMine(thisMine){
+		if(thisMine.frameNum == undefined){
+			thisMine.frameNum = 0;
+			isSpinning = false;
+		}else{
+			thisMine.frameNum++;
+		}
+
+		var frame = [5,4,3,2];
+		var frameWidth = 50;
+
+		if(thisMine.frameNum == frame.length){
+			thisMine.frameNum = 0;
+		}
+
+		var bgPos = -((frameWidth * (frame[thisMine.frameNum]))+2);
+
+		$(thisMine).css({'background-position':bgPos+'px -200px'});
+
+		setTimeout(function(){
+			spinMine(thisMine);
+		}, 1000/20);
+	}
+
+	function spinShield(thisShield){
+		if(thisShield.frameNum == undefined){
+			thisShield.frameNum = 0;
+			isSpinning = false;
+		}else{
+			thisShield.frameNum++;
+		}
+
+		var frame = [8,7,6,5,4,3,2,1,0];
+		var frameWidth = 48;
+
+		if(thisShield.frameNum == frame.length){
+			thisShield.frameNum = 0;
+		}
+
+		var bgPos = (frameWidth * (frame[thisShield.frameNum]));
+
+		$(thisShield).css({'background-position':bgPos+'px 0px'});
+
+		setTimeout(function(){
+			spinShield(thisShield);
+		}, 1000/30);
+	}
+
+	function updateLives(){
+		extraLives--
+		var life = document.getElementById("lifebar").children[extraLives];
+		$(life).removeClass('lives').addClass('death');
+ 
+
+		var toggleP = setInterval(togglePlayer, 100);
+		console.log('toggleP run');
+		setTimeout(function(){
+			clearInterval(toggleP)
+			console.log('clear int run');
+		}, 1600);
+	}
+
+	function togglePlayer(){
+		player.toggle()
+	}
+
+	function gameOver(){
+		clearInterval(createEnemy); //makes no more enemies
+		clearInterval(createPLaser);
+		$('.enemy').remove();
+		$('.mine').remove();
+		$('.shield').remove();
+		$('.power').remove();
+
+		
+		stage.destroy();
+		gameRunning = false;
+		$('.intro').show();
+		$('.intro h1').text('Game Over!');
+		$('.intro p').text('You destroyed '+score+' enemies!');
+		$('.button').text('Play Again?');
+		$('#player, #lifebar').hide();
+	}//end gameOver
+
+	function recthit(rectone, recttwo){
+		//console.log('recthit called');
+		var r1 = $(rectone);
+		var r2 = $(recttwo);
+	
+		var r1x = r1.offset().left;
+		var r1w = r1.width();
+		var r1y = r1.offset().top;
+		var r1h = r1.height();
+		
+		var r2x = r2.offset().left;
+		var r2w = r2.width();
+		var r2y = r2.offset().top;
+		var r2h = r2.height();
+		
+		if( r1y+r1h < r2y ||
+			r1y > r2y+r2h ||
+			r1x > r2x+r2w ||
+			r1x+r1w < r2x ){
+				//console.log('recthit-false')
+				return false;
+		}else{
+			//console.log('recthit-true')
+			return true;   
+		}
+	}//end function recthit
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

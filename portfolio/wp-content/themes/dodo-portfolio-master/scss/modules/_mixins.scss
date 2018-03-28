@@ -1,0 +1,108 @@
+
+@mixin reset_list(){
+	list-style-type: none;
+	margin:0;
+	padding:0;
+}
+
+@mixin button($color:#bada55){
+	background-color:$color;
+	padding:.5em 1em;
+	text-decoration:none;
+	text-transform:uppercase;
+	margin:.5em;
+	display:inline-block;
+	color:white;
+	font-family:$heading-font;
+}
+
+@mixin current($color:dimgray){
+	background-color:$color;
+	color: text-contrast($color);
+	
+}
+@mixin action($color:dodgerblue){
+	color: text-contrast($color);
+	background: $color;  
+	border:none;
+	width:auto;
+	display:inline-block;
+	padding:.25em 1em;
+	font-family: inherit;
+	cursor: pointer;
+	transition: background .3s ease-out;
+	white-space: nowrap;
+	border-radius:0;
+	&:hover{
+		text-decoration:none;
+		background-color:complement($color);
+		color: text-contrast($color);
+		
+	}
+}
+@mixin secondary-action($color:#eee, $text-color:black){
+	color: $text-color;
+	background: $color;  
+	border:none;
+	width:auto;
+	padding:.2em .7em;
+	font-family: inherit;
+	cursor: pointer;
+	transition: background .3s ease-out;
+	white-space: nowrap;
+}
+@mixin gradient($gradient-1, $gradient-2, $direction:right){
+	background: $gradient-1;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to $direction, $gradient-2, $gradient-1);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to $direction, $gradient-2, $gradient-1); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+@mixin shadow($color:black){
+	-webkit-box-shadow: 2px 2px 5px 0px rgba($color,.3);
+	-moz-box-shadow: 2px 2px 5px 0px rgba($color,.3);
+	box-shadow: 2px 2px 5px 0px rgba($color,.3);
+}
+@mixin text-shadow($color:black){
+	-webkit-text-shadow: 1px 2px 2px  rgba($color,.3);
+	-moz-text-shadow: 1px 2px 2px  rgba($color,.3);
+	text-shadow: 1px 2px 2px  rgba($color,.3);
+}
+
+@mixin userpic-circle($size:80px){
+	border-radius: 500px;
+	vertical-align: middle;
+	margin-right: $gutter/2;
+	@include shadow;
+	width:$size;
+	height:$size;
+}
+@mixin clearfix {
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+@mixin animate{
+	-webkit-transition: 0.25s ease-in-out, height 1ms;
+	-moz-transition: 0.25s ease-in-out, height 1ms;
+	-o-transition: 0.25s ease-in-out, height 1ms;
+	transition: 0.25s ease-in-out, height 1ms;
+	// -webkit-text-size-adjust: none;
+}
+
+@mixin admin-sticky-fix( $offset: 0 ) {
+	$narrow-offset: 46px;
+	$wide-offset: 32px;
+	@if $offset != 0 and type-of($offset) == 'number' {
+		$narrow-offset: $narrow-offset + $offset;
+		$wide-offset: $wide-offset + $offset;
+	}
+	.admin-bar & {
+		top: $narrow-offset;
+		@media screen and (min-width: 783px) {
+			top: $wide-offset;
+		}
+	}
+}

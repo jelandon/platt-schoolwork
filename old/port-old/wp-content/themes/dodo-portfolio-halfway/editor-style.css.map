@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AACA,IAAI;EACH,WAAW,EAAC,0BAA0B;EACtC,WAAW,EAAC,GAAG",
+"sources": ["scss/partials/_typography.scss"],
+"names": [],
+"file": "editor-style.css"
+}

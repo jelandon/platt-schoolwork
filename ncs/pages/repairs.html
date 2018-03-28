@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<title>Repairs | NCS</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Arvo|Coustard|Crete+Round|Imprima|Montserrat|Montserrat+Alternates|Raleway:400,800" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
+</head>
+<body class="repairs">
+	<header>
+		<div class="logo-mask">
+			<div class="layer1">
+				<a href="../index.html" class="logo" title="Homepage"><img src="../images/logo2.svg" alt="Logo" width="100" height="100"></a>
+			</div>
+			<div class="layer2">
+				<a href="../index.html" class="logo" title="Homepage"><img src="../images/logo1.svg" alt="Logo" width="100" height="100"></a>
+			</div>
+		</div>
+		<ul id="nav-top">
+			<li><a href="cameras.html" title="Visit our online Camera Gallery">Cameras</a></li>
+			<li><a href="accessories.html" title="Visit our online Accessories Gallery">Accessories</a></li>
+			<li class="current"><a href="repairs.html" title="Visit our Repairs Page">Repairs</a></li>
+		</ul>
+		<a href="discover.html" class="button" title="Find our store or write us a note">Discover Us</a>
+	</header>
+	<div class="main-image">
+	</div>
+	<main id="content">
+		<h1>NCS Repairs: The Best Tools Produce<br>The Most Professional Results</h1>
+		<p class="subhead">
+			Our service staff is trained and certified to work on all makes and models of cameras, even ones we don't carry in the showroom! Whether it’s regular maintenance or in-depth repair, you can count on us to do the job right every time.
+		</p>
+		<div class="boxxes">
+			<article class="box">
+				<h2>Estimates are Free</h2>
+				<p>
+					When you bring in your camera to NCS, we start with a free, no-obligation estimate of the work that will be needed. One of our friendly service professionals will discuss any necessary repairs and explain what work needs to be done, respecting your decisions and budget.
+				</p>
+			</article>
+			<article class="box">
+				<h2>Call for Appt.</h2>
+				<p>
+					To save time, you can call us to find out how long a repair will take and schedule an appointment. For quick repairs, don’t forget to check out what’s new in our store while you wait. For longer estimates, drop off your camera and we’ll call with any questions or updates.
+				</p>
+			</article>
+			<article class="box">
+				<h2>Walk-ins Welcome</h2>
+				<p>
+					Getting ready to shoot and all of a sudden your lens jams? Memory card won't read? You can't always plan when your camera will need attention so walk-ins are always welcome. If we can fix it on the spot we will, or you can come back later to pick it up if we need more time.
+				</p>
+			</article>
+		</div>
+	</main>
+	<footer>
+		<ul id="nav-bottom">
+			<li><a href="../index.html">Homepage</a></li>
+			<li><a href="cameras.html">Cameras</a></li>
+			<li><a href="accessories.html">Accessories</a></li>
+			<li class="current"><a href="repairs.html">Repairs</a></li>
+			<li><a href="discover.html">Discover Us</a></li>
+		</ul>
+		<p>
+			<span>&copy;</span> 2017 <a href="http://behance.net/jelandon" target="_blank">John Landon Designs</a>
+		</p>
+	</footer>
+
+	<script type="text/javascript" src="../scripts/jquery-3.2.1.min.js"></script>
+
+	<script type="text/javascript">
+		//change logo image when mouse hovers over it
+		$(".logo-mask").hover(function(){
+			$(".layer2").stop(true, true).fadeOut(150);
+			$(".layer1").stop(true, true).fadeIn(150);
+		},
+		function(){
+			$(".layer2").stop(true, true).fadeIn(150);
+			$(".layer1").stop(true, true).fadeOut(150);
+		});
+	</script>
+</body>
+</html>

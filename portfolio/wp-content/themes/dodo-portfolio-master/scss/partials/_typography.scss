@@ -1,0 +1,31 @@
+/* == typography */
+
+body{
+	font-family: $body-font;
+	font-weight:400;
+	font-size:105%;
+}
+/* headings */
+h1, h2, h3, h4{
+	font-family: $heading-font;
+}
+.content p{
+	line-height: 1.5;
+}
+
+blockquote {
+  @extend .format-quote;
+  @include reset-list;
+}
+
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+blockquote p {
+  display: inline;
+}

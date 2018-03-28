@@ -1,0 +1,146 @@
+/* ==Main Styles */
+
+
+a {
+	color: $accent-color;
+	text-decoration: none;
+}
+a:hover,
+a:focus {
+	color: $hover-color;
+	text-decoration: underline;
+}
+/* generic .header */
+
+.header{
+	@include gradient($gradient-1, $gradient-2);
+	background-size:cover;
+	background-repeat:no-repeat;
+	background-attachment:scroll;
+	
+	color:white;
+	padding-top:1px;
+	@include clearfix;
+
+	.wrapper{
+		position: relative;
+	}
+	.logo{
+		max-width:70px;
+		height:auto;
+		float:left;
+		margin:$gutter 0 $gutter $gutter;
+		img{
+			max-width:100%;
+			height:auto;
+		}
+	}
+	
+	h1 {
+		margin:0;
+		padding:2em 0 0 $gutter;
+		font-size:100%;
+	}
+	h2{
+		
+		margin:0;
+		padding:.3em 0 .3em $gutter;
+		font-size:90%;
+	}
+	.site-title a{
+		color:white;
+	}
+	.searchform, .search-form{
+		padding-right:$gutter;
+	}
+
+}//.header
+
+
+
+
+article {
+	margin-bottom: 3em;
+	padding:$gutter;
+}
+
+.entry-content{
+	margin-bottom:1em;
+}
+.postmeta {
+	clear:both;
+	border-top:solid 1px rgba($main-color, .2);
+	padding: .2em;
+	font-size: .85em;
+	color:rgba($text-color, .6);
+	ul, ol, li{
+		list-style-type:none;
+		display: inline-block;
+		margin:0;
+		padding:0;
+	}
+}
+.read-more{
+	@include secondary-action(rgba($main-color, .1));
+	display:inline;
+}
+
+/* featured images on the blog */
+.blog .wp-post-image{
+	float:right;
+	margin:0 0 1em 1em;
+	max-width:50%;
+	height:auto;
+}
+
+
+.content img{
+	max-width: 100%;
+	height:auto;
+}
+/* fix for really wide <div> in the sample data */
+.entry-content > *{
+	max-width: 100%;
+}
+
+.postmeta span:not(:last-child) {
+	border-right: solid 1px #ccc;
+	margin-right: .3em;
+	padding-right: .3em;
+}
+
+.sidebar{
+	color:lighten($text-color, 20);
+	.widget{
+		margin-top:2em;
+	}
+	ul{
+		@include reset-list;
+		
+	}
+	li{
+		margin-bottom: .3em;
+	}
+}
+
+.crp_related{
+	background-color:rgba(white, .5);
+	padding:$gutter;
+	border-top: solid 1px rgba($main-color, .2);
+	margin:5 * $gutter 0;
+	h3{
+		font-size:1em;
+	}
+	ul{
+		@include reset-list;
+		@include flexbox;
+		@include flex-just(space-between);
+	}
+
+	.crp_title{
+		display: block;
+	}
+}
+
+
+

@@ -1,0 +1,280 @@
+/*
+Theme Name: jl-portfolio
+Author: John Landon
+Description: This theme is for the portfolio @ johnlandon.design
+License: GPLv3
+Version: 0.1
+*/
+
+/*
+==VARIABLES
+*/
+:root {
+	--header-bg-top: white;
+	--header-bg-bottom: ghostwhite;
+	--default-link-color: #0099cc;
+	--hover-link-color: darkblue;
+}
+
+/*
+==RESET
+*/
+
+html {
+	box-sizing: border-box;
+	font-family: 'Titillium Web', sans-serif;
+	background-color: white;
+	width: 100%;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+}
+
+body {
+	margin: 0;
+}
+
+p {
+	line-height: 1.4;
+}
+
+pre {
+	white-space: pre-wrap;
+	/* Mozilla, since 1999 */
+	white-space: -moz-pre-wrap;
+	/* Opera 4-6 */
+	white-space: -pre-wrap;
+	/* Opera 7 */
+	white-space: -o-pre-wrap;
+	/* Internet Explorer 5.5+ */
+	word-wrap: break-word;
+}
+
+code {
+	overflow: scroll;
+}
+
+textarea, input {
+	max-width: 100%;
+}
+
+iframe {
+	max-width: 100%;
+}
+
+/*
+==Main Styles
+*/
+
+a {
+	color: var(--default-link-color);
+	text-decoration: none;
+}
+
+a:hover,
+a:focus {
+	color: var(--hover-link-color);
+	text-decoration: underline;
+}
+
+h1,h2,h3 {
+	margin: 0;
+	padding: 0;
+}
+
+blockquote {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+blockquote:before {
+	color: #ccc;
+	content: open-quote;
+	font-size: 4em;
+	line-height: 0.1em;
+	margin: 0;
+	vertical-align: -0.4em;
+}
+
+blockquote p {
+	display: inline;
+}
+
+
+
+/*
+==HEADER
+*/
+.header {
+	background: var(--header-bg-bottom);
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: -webkit-linear-gradient( var(--header-bg-top), var(--header-bg-bottom));
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: linear-gradient( var(--header-bg-top), var(--header-bg-bottom));
+	background: white;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	padding: 1em;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.header .logo img {
+	max-width: 100%;
+	height: auto;
+}
+
+nav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav ul li{
+	display: inline-block;
+	padding: 0 1em;
+}
+
+/*
+MAIN
+*/
+main{
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 1em;
+}
+
+#content {
+	float: left;
+	width: 70%;
+}
+
+#sidebar {
+	float: right;
+	width: 30%;
+}
+
+#footer {
+	clear: both;
+}
+
+/* fix for really wide <div> in the sample data */
+.entry-content > * {
+	max-width: 100%;
+}
+
+.postmeta span:not(:last-child) {
+	border-right: solid 1px #ccc;
+	margin-right: .3em;
+	padding-right: .3em;
+}
+
+.sidebar ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.sidebar li {
+	margin-bottom: .3em;
+}
+/* = WordPress Core */
+.alignnone {
+  margin: 0 auto;
+  max-width: 98.5%;
+  height: auto;
+}
+
+.aligncenter,
+div.aligncenter {
+  display: block;
+  margin: 5px auto 5px auto; }
+
+.alignright {
+  float: right;
+  margin: 5px 0 20px 20px; }
+
+.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0; }
+
+a img.alignright {
+  float: right;
+  margin: 5px 0 20px 20px; }
+
+a img.alignnone {
+  margin: 5px 20px 20px 0; }
+
+a img.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0; }
+
+a img.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
+.wp-caption {
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  max-width: 96%;
+  /* Image does not overflow the content area */
+  padding: 5px 3px 10px;
+  text-align: center; }
+
+.wp-caption.alignnone {
+  margin: 5px 20px 20px 0; }
+
+.wp-caption.alignleft {
+  margin: 5px 20px 20px 0; }
+
+.wp-caption.alignright {
+  margin: 5px 0 20px 20px; }
+
+.wp-caption img {
+  border: 0 none;
+  height: auto;
+  margin: 0;
+  max-width: 98.5%;
+  padding: 0;
+  width: auto; }
+
+.wp-caption p.wp-caption-text {
+  font-size: 11px;
+  line-height: 17px;
+  margin: 0;
+  padding: 0 4px 5px; }
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute !important;
+  white-space: nowrap;
+  height: 1px;
+  width: 1px;
+  overflow: hidden; }
+
+.screen-reader-text:focus {
+  background-color: #f1f1f1;
+  border-radius: 3px;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+  clip: auto !important;
+  color: #21759b;
+  display: block;
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: bold;
+  height: auto;
+  left: 5px;
+  line-height: normal;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 100000;
+  /* Above WP toolbar. */ }

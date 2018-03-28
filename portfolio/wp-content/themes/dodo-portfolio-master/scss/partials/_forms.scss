@@ -1,0 +1,27 @@
+/* == forms */
+.comment-form label{
+	display: block;
+}
+input{
+	padding:.5em 1em;
+	margin:0 .5em .5em 0;
+	display: inline-block;
+	border:none;
+	vertical-align: bottom;
+	outline:solid 1px #ddd;
+}
+textarea{
+	resize: vertical;
+	outline:solid 1px #ddd;
+	margin:0 .5em .5em 0;
+	border:none;
+	
+}
+input[type=submit]{
+	background: darken($gradient-2, 10);  /* fallback for old browsers */
+	outline:solid 1px text-contrast(darken($gradient-2, 10));
+	color:text-contrast(darken($gradient-2, 10));
+	font-family: $heading-font;
+	cursor: pointer;
+}
+

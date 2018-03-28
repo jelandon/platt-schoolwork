@@ -1,0 +1,141 @@
+/* ==Portfolio */
+.post-type-archive-portfolio_piece,
+.single-portfolio_piece,
+.tax-portfolio_category,
+.tax-skill{
+	
+	.content{
+		text-align: center;
+		.solution{
+			background-color:rgba($main-color, .06);
+			padding:$gutter;
+		}
+		
+	}
+	
+	.content-title{
+		margin-bottom:$gutter;
+	}
+}
+.entry-content, .solution, .skills{
+	text-align: left;
+}
+.type-portfolio_piece{
+	margin:$gutter 0;
+	.excerpt{
+		display: none;
+	}
+}
+.hero-image{
+	img{
+		line-height:0;
+		font-size:0;
+	}
+	position:relative;
+	overflow:hidden;
+	color:white;
+
+	.piece-title{
+		@include reset-list;		
+		pointer-events:none;
+		padding:13% $gutter $gutter;
+		line-height: $line-height;
+		font-size: 6vw;		
+		position:absolute;
+		top:0;
+		left:0;
+		bottom:0;
+		right:0;
+		width:100%;
+		background-color:rgba(0,0,0,.5);
+		color:white;
+		@include gradient(rgba(black, .8), rgba(black, .2), bottom);
+		@include text-shadow();		
+	}
+
+	.piece-title{
+		font-size:2rem;
+	}
+	.year{
+		display: none;
+	}
+	.your-role{
+		position:absolute;
+		right:$gutter;
+		bottom:$gutter;
+	}
+	.client{
+		position: absolute;
+		left:$gutter;
+		bottom:$gutter;
+	}
+
+
+}
+
+.portfolio-category-filter{
+	@include reset-list;
+	margin: ($gutter * 2) $gutter;
+	@include flexbox;
+	@include justify-content(space-around);
+	@include flex-wrap(wrap);
+	
+	li{
+		margin:$gutter/2;
+	}
+	a{
+		display: block;
+		padding:.2em .4em;
+	}
+	.current-cat a{
+		@include current(#ddd);
+	}
+}
+@media screen and (min-width:$breakpoint-1) {
+	.post-type-archive-portfolio_piece,
+	.single-portfolio_piece,
+	.tax-portfolio_category,
+	.tax-skill{
+		.content{
+			width:100%;
+			float:none;
+			margin: auto;
+			max-width:$max-width;
+		}
+
+	}
+	.hero-image{
+		.piece-title{
+			font-size:2rem;
+		}
+		.year{
+			display: block;
+			position:absolute;
+			bottom:$gutter;
+			left:$gutter;
+		}
+		.your-role{
+			position:absolute;
+			right:$gutter;
+			bottom:$gutter;
+		}
+		.client{
+			position: absolute;
+			right:$gutter;
+			left:$gutter;
+			bottom:$gutter;
+		}
+	}
+	.skills{
+		width:35%;
+		float:left;
+		padding:$gutter;
+		margin-bottom: 2*$gutter
+	}
+	.solution{
+		width:65%;
+		float:left;
+		margin-bottom: 2*$gutter
+	}
+
+}

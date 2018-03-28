@@ -1,0 +1,36 @@
+#hey-look-here-bar{
+	background-color: hotpink;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+}
+.admin-bar #hey-look-here-bar{
+	top: 32px;
+}
+#hey-look-here-bar a{
+	background-color: black;
+	display: inline-block;
+	border-radius: .5em;
+	padding: .1em .4em;
+	color: white;
+	text-transform: uppercase;
+}
+#hey-look-here-bar a:hover{
+	background-color: red;
+}
+#hey-look-here-bar p{
+	margin: .2em;
+	display: inline-block;
+}
+@media screen and (max-width: 782px){
+	.admin-bar #hey-look-here-bar{
+		top: 46px;
+	}
+}
+@media screen and (max-width:600px){
+	#hey-look-here-bar{
+		position: absolute;
+	}
+}

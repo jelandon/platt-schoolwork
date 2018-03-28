@@ -1,0 +1,22 @@
+{
+    "name": "melissa-theme",
+    "displayName": "Melissa Theme",
+    "description": "",
+    "version": "0.0.1",
+    "publisher": "null",
+    "engines": {
+        "vscode": "^1.21.0"
+    },
+    "categories": [
+        "Themes"
+    ],
+    "contributes": {
+        "themes": [
+            {
+                "label": "Melissa Evening",
+                "uiTheme": "vs-dark",
+                "path": "./themes/Melissa Evening-color-theme.json"
+            }
+        ]
+    }
+}

@@ -1,0 +1,45 @@
+body{
+	background-color: indigo;
+}
+/*page container*/
+div#login{
+	background-color: white;
+	width: 400px;
+	box-sizing: border-box;
+	padding: 2em;
+	margin: 2em auto;
+}
+/*logo*/
+.login h1 a{
+	background-image: url(../images/platt.png);
+	width: 128px;
+	height: 128px;
+	background-size: 128px;
+}.login form{
+	box-shadow: none;
+}
+/*button*/
+.wp-core-ui .button-primary{
+	background-color: blueviolet;
+	box-shadow: none;
+	border: none;
+	border-radius: 0;
+	text-shadow: none;
+	font-size: 130%;
+	padding: 1em;
+	display: block;
+	margin: 1em 0 0;
+	width: 100%;
+	text-transform: uppercase;
+	height: auto;
+}
+
+
+
+.login #login_error, .login .message {
+    border-left: 4px solid indigo;
+   }
+  input[type=text]:focus, input[type=search]:focus, input[type=radio]:focus, input[type=tel]:focus, input[type=time]:focus, input[type=url]:focus, input[type=week]:focus, input[type=password]:focus, input[type=checkbox]:focus, input[type=color]:focus, input[type=date]:focus, input[type=datetime]:focus, input[type=datetime-local]:focus, input[type=email]:focus, input[type=month]:focus, input[type=number]:focus, select:focus, textarea:focus {
+    border-color: blueviolet;
+    box-shadow: 0 0 2px rgba(30,140,190,.8);
+}

@@ -1,0 +1,32 @@
+/*
+Theme Name: Baby 2016
+Author: Joh Landon
+Author URI: https://johnlandon.design/
+Description: Child theme of 2016
+Version: 1.0
+Template: twentysixteen
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+body{
+	background-color: fuchsia;
+}
+.widget{
+	border-top: dotted 3px orange;
+}
+.footer-widgets .widget{
+	float: left;
+	width: 25%;
+	min-width: 300px;
+	margin: 1em;
+	box-sizing: border-box;
+}
+body, button, input, select, textarea{
+font-family: "Ranga", Arial, sans-serif;
+font-size: 120%;
+}
+.site-title, .entry-title, .widget, .widget-title, .main-navigation, .sticky-post{
+	font-family: "Indie Flower", Georgia, serif;
+}

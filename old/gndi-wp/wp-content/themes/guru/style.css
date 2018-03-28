@@ -1,0 +1,106 @@
+/*
+Theme Name: Guru
+Theme URI: https://wordpress.org/themes/guru/
+Author: John Landon
+Author URI: https://johnlandondesigns.com/
+Description: A beautifully engaging theme for organizations to stay in touch with their communities.
+Version: 1.0
+License: GPLv3
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
+Tags: blog, two-columns, left-sidebar, accessibility-ready, custom-background, custom-colors, custom-header, custom-logo, custom-menu, editor-style, featured-images, microformats, post-formats, rtl-language-support, sticky-post, threaded-comments, translation-ready
+Text Domain: guru
+
+*/
+body {
+  max-width: 60em;
+  margin: 0 auto;
+  font-family: Calibri, Arial, sans-serif;
+}
+
+.header,
+.footer,
+.content,
+.sidebar {
+  padding: 2%;
+  box-sizing: border-box;
+}
+
+a {
+  color: dodgerblue;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: darkgoldenrod;
+  text-decoration: underline;
+}
+
+header nav {
+  background: #eee;
+  margin: 1em 0;
+}
+
+header nav ul,
+header nav li {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+header nav ul ul{
+  display:none;
+}
+header nav a {
+  display: block;
+  padding: .5em;
+}
+
+header nav a:hover {
+  background: #ddd;
+  text-decoration: none;
+}
+
+article {
+  margin-bottom: 3em;
+}
+
+.postmeta {
+  clear:both;
+  background: #eee;
+  padding: .2em;
+  font-size: .9em;
+}
+
+.postmeta span:not(:last-child) {
+  border-right: solid 1px #ccc;
+  margin-right: .3em;
+  padding-right: .3em;
+}
+
+@media screen and (min-width:600px) {
+  header nav li {
+    display: inline-block;
+  }
+  header nav ul ul{
+  position:absolute;
+  left:0;
+  top:100%;
+  background: #eee;
+}
+  header nav ul li:hover ul{
+    display:block;
+  }
+  .content {
+    float: left;
+    width: 70%;
+  }
+  .sidebar {
+    float: right;
+    width: 30%;
+  }
+  .footer {
+    border-top: solid 1px #ddd;
+    clear: both;
+    text-align: center;
+  }
+}

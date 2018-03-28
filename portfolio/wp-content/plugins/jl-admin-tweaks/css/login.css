@@ -1,0 +1,59 @@
+body{
+	background-color: goldenrod;
+}
+/* page container */
+div#login{
+	background-color: white;
+	width:400px;
+	box-sizing: border-box;
+	padding:2em;
+	margin:2em auto;
+}
+/* logo */
+.login h1 a{
+	background-image:url(../images/logo.svg);
+	width:102px;
+	height:128px;
+	background-size:102px;
+}
+
+.login form{
+	box-shadow: none;
+}
+
+/* button */
+.wp-core-ui .button-primary.button-large{
+	background-color: #5B3C25;
+	box-shadow:none;
+	border:none;
+	border-radius: 0;
+	text-shadow: none;
+	font-size:130%;
+	padding:.75em 1em;
+	display: block;
+	margin:1em 0 0;
+	width: 100%;
+	text-transform: uppercase;
+	height:auto;
+}
+
+/* feedback and errors */
+.login .message{
+	border-left:none;
+	background-color: lemonchiffon;
+	box-shadow:none;
+	margin:1.5em;
+
+}
+
+.login #login_error{
+	border:none;
+	background-color: #FDD6C6; /*pink*/
+	box-shadow: none;
+	margin:1.5em;
+}
+/* Input Focus outline */
+input[type=text]:focus, input[type=search]:focus, input[type=radio]:focus, input[type=tel]:focus, input[type=time]:focus, input[type=url]:focus, input[type=week]:focus, input[type=password]:focus, input[type=checkbox]:focus, input[type=color]:focus, input[type=date]:focus, input[type=datetime]:focus, input[type=datetime-local]:focus, input[type=email]:focus, input[type=month]:focus, input[type=number]:focus, select:focus, textarea:focus{
+	border-color:transparent;
+	box-shadow: 0 0 2px chocolate;
+}

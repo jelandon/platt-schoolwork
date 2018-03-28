@@ -1,0 +1,195 @@
+html{
+	box-sizing: border-box;
+	background-color: #ffffff;
+	font-size: 100%;
+	min-width: 320px;
+	min-height: 100%;
+}
+*, *:before, *:after{
+	box-sizing: inherit;
+}
+.cf:before, .cf:after{
+	content: " ";
+	display: table;
+}
+.cf:after{
+	clear: both;
+}
+body{
+	font-family: "Libre Franklin", "Arial", sans-serif;
+	margin: 0;
+	line-height: 1.5;
+}
+.logo{
+	float: left;
+	padding: 12.5px;
+	height: 50px;
+}
+header{
+	height: 75px;
+	position: relative;
+	background-color: #f4f4f4;
+	box-shadow: 0px 0px 5px black;
+}
+header a.logo{
+	color:inherit;
+	text-decoration: none;
+	display: inline;
+	font-weight: bold;
+}
+
+header ul.menu{
+	float: right;
+	padding: 1em;
+}
+ul, li{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+.menu li{
+	display: inline-block;
+}
+.menu a{
+	padding:1rem .5rem;
+	color:inherit;
+	text-decoration: none;
+	display: inline;
+	font-weight: bold;
+}
+.wrapper{
+	/*height: 90%;*/
+
+	display: -ms-flexbox;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-box;
+	display: box;
+
+	-ms-flex-direction: row;
+	-webkit-box-orient: horizontal;
+	-moz-box-orient: horizontal;
+	-ms-box-orient: horizontal;
+	box-orient: horizontal;
+}
+.content{
+	background-color: white;
+	-ms-flex: 1;
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
+	-ms-box-flex: 1;
+	box-flex: 1;
+	padding: 1em;
+}
+h1, h2{
+	margin: 0;
+	padding: 0;
+}
+img.example{
+	width: 80%;
+	margin-left: 10%;
+}
+.sidebar{
+	width: 25%;
+	-ms-flex: 0;
+	-webkit-box-flex: 0;
+	-moz-box-flex:  0;
+	-ms-box-flex: 0;
+	box-flex: 0; 
+	background-color: #bed0ed;
+	padding: 1em;
+}
+.sidebar h2{
+	font-size: 1em;
+	font-weight: 600;
+	padding-bottom: .5em;
+}
+form{
+	display: table;
+}
+form label{
+	position: relative;
+	display: block;
+}
+form label input{
+	border-radius: 3px;
+  box-sizing: border-box;
+  display: block;
+  border: none;
+	font-weight: bolder;
+  padding: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+  font-size: 18px;
+  outline: none;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+form label input::-webkit-input-placeholder {
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  color: #999;
+  font: 18px Helvetica, Arial, sans-serif;
+}
+form label input::-moz-placeholder {
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  color: #999;
+  font: 18px Helvetica, Arial, sans-serif;
+}
+form label input:-ms-input-placeholder {
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  color: #999;
+  font: 18px Helvetica, Arial, sans-serif;
+}
+form label input::placeholder {
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  color: #999;
+}
+form label input:focus, form label input.populated {
+  padding-top: 28px;
+  padding-bottom: 12px;
+}
+form label input:focus::-webkit-input-placeholder, form label input.populated::-webkit-input-placeholder {
+  color: transparent;
+}
+form label input:focus::-moz-placeholder, form label input.populated::-moz-placeholder {
+  color: transparent;
+}
+form label input:focus:-ms-input-placeholder, form label input.populated:-ms-input-placeholder {
+  color: transparent;
+}
+form label input:focus::placeholder, form label input.populated::placeholder {
+  color: transparent;
+}
+form label input:focus + span, form label input.populated + span {
+  opacity: 1;
+  top: 10px;
+}
+
+form label span {
+	color: rgba(0,0,139,.65);
+	font-size: 14px;
+	position: absolute;
+	top: 0px;
+	left: 20px;
+	font-weight: bold;
+	opacity: 0;
+	-webkit-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+form label input.populated + span {
+	position: relative;
+  opacity: 1;
+  top: 10px;
+}
+footer{
+	background-color: #39b54a;
+	height: 35px;
+/*	position: relative;
+	bottom: 0;
+	left: 0;
+	right: 0;*/
+}

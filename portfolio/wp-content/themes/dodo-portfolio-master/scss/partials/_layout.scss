@@ -1,0 +1,39 @@
+// @TODO: Make this work on all screen sizes
+%grid{
+	@include flexbox();
+	@include flex-wrap(wrap);
+	@include justify-content(space-around);
+	& > * {
+		width:25%;
+		min-width: 320px;
+	}
+}
+
+.wrapper{
+	max-width:70em;
+	margin:auto;
+}
+.content {
+	max-width:1000px;
+	margin:auto;
+}
+
+.footer,
+.content,
+.sidebar {
+	padding: $gutter;
+}
+
+
+/* ==footer */
+
+.footer{
+	background-color: rgba($main-color,.1);
+	clear:both;
+
+	@extend %grid;
+	.widget{
+		text-align: left;
+		min-width: 300px;
+	}
+}

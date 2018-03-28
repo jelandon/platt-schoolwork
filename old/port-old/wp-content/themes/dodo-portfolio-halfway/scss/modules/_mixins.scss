@@ -1,0 +1,15 @@
+@mixin reset_list(){
+	list-style-type: none;
+	margin:0;
+	padding:0;
+}
+@mixin button ($color: #bada55){
+	background-color: $color;
+	padding: .5em;
+	border-radius: 5em;
+	text-decoration: none;
+	text-transform: uppercase;
+	margin: .5em;
+	display: inline-block;
+	color: black;
+}

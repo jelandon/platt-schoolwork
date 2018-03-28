@@ -1,0 +1,231 @@
+html{
+	box-sizing: border-box;
+	background-color: #ffffff;
+	font-size: 100%;
+	min-width: 320px;
+	min-height: 100%;
+}
+*, *:before, *:after{
+	box-sizing: inherit;
+}
+.cf:before, .cf:after{
+	content: " ";
+	display: table;
+}
+.cf:after{
+	clear: both;
+}
+body{
+	font-family: "Libre Franklin", "Arial", sans-serif;
+	margin: 0;
+	line-height: 1.5;
+}
+.logo{
+	float: left;
+	padding: 12.5px;
+	height: 50px;
+}
+header{
+	height: 75px;
+	position: relative;
+	background-color: #f4f4f4;
+	box-shadow: 0px 0px 5px black;
+}
+header a.logo{
+	color:inherit;
+	text-decoration: none;
+	display: inline;
+	font-weight: bold;
+}
+
+header ul.menu{
+	float: right;
+	padding: 1em;
+}
+ul, li{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+.menu li{
+	display: inline-block;
+}
+.menu a{
+	padding:1rem .5rem;
+	color:inherit;
+	text-decoration: none;
+	display: inline;
+	font-weight: bold;
+}
+.wrapper{
+	display: -ms-flexbox;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-box;
+	display: box;
+
+	-ms-flex-direction: row;
+	-webkit-box-orient: horizontal;
+	-moz-box-orient: horizontal;
+	-ms-box-orient: horizontal;
+	box-orient: horizontal;
+}
+.content{
+	background-color: white;
+	-ms-flex: 1;
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
+	-ms-box-flex: 1;
+	box-flex: 1;
+	padding: 1em;
+}
+h1, h2{
+	margin: 0;
+	padding: 0;
+}
+img.example1, img.example2{
+	width: 80%;
+	margin-left: 10%;
+}
+.sidebar{
+	width: 25%;
+	-ms-flex: 0;
+	-webkit-box-flex: 0;
+	-moz-box-flex:  0;
+	-ms-box-flex: 0;
+	box-flex: 0;
+	background-color: #dddddd;
+	padding: 1em;
+}
+.sidebar h2{
+	font-size: 1em;
+	font-weight: 600;
+	padding-bottom: .5em;
+	text-align: center;
+}
+
+input[type="text"], input[type="password"], input[type="email"]{
+	border-radius: 3px;
+  box-sizing: border-box;
+  display: block;
+  border: none;
+	font-weight: bolder;
+	outline: none;
+	padding-left: 15px;
+	padding-top: 15px;
+	position: relative;
+}
+input div{
+	padding-top: 5px;
+	position: relative;
+}
+input:focus ~ label, textarea:focus ~ label, input:valid ~ label{
+	font-size: 0.75em;
+	color: #39b54a;
+	font-weight: bolder;
+	top: -.9rem;
+	-webkit-transition: all 0.125s ease;
+	transition: all 0.125s ease;
+ }
+ .styled-input {
+	 width: 100%;
+	 position: relative;
+	 height: 75px;
+	 margin-top: 10px;
+ }
+ .styled-input input{
+	 height: 50px;
+	width: 100%;
+ }
+ .styled-input label {
+	 color: #999;
+	 padding: 1rem;
+	 position: absolute;
+	 top: 0;
+	 left: 0;
+	 -webkit-transition: all 0.25s ease;
+	 transition: all 0.25s ease;
+	 pointer-events: none;
+ }
+
+form input[type="submit"]{
+	background-color: #39b54a;
+	position: relative;
+	padding: 7px;
+	width: 75%;
+	left: 12.5%;
+	border-radius: 2px;
+	color: white;
+	cursor: pointer;
+	font-size: 1em;
+	/* outline: none; */
+	border: none;
+	margin-top: 20px;
+}
+.checkbox p{
+	display: inline;
+}
+.checkbox{
+	margin-top: 20px;
+}
+
+span.hint{
+	display: none;
+}
+
+button{
+	position: relative;
+	top: -38px;
+	/* right: -250px; */
+	/* padding-top: -25px; */
+	float: right;
+	padding: 5px;
+	width:50px;
+	border-radius: 3px;
+	background-color: #dddddd;
+	border: none;
+	/* outline: none; */
+	right: 10px;
+	cursor: pointer;
+}
+#show-hide, #show-hide2{
+	font-size: 12px;
+	font-weight: bolder;
+}
+
+
+footer{
+	background-color: #39b54a;
+	height: 100%;
+	padding: 10px;
+	padding-left: 25px;
+}
+
+
+
+div.modal{
+	background-color: #dddddd;
+	width: 500px;
+	margin: 0 auto;
+	margin-top: 100px;
+	border-radius: 5px;
+	padding: 20px;
+	margin-bottom: 100px;
+}
+div.modal h1{
+	text-align: center;
+	padding-bottom: 10px;
+}
+footer.login{
+	height: 100%;
+}
+
+.budget div.styled-input{
+	display: inline;
+}
+.budget div.styled-input input{
+	width: 200px;
+}
+p.add{
+	display: inline;
+}

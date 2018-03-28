@@ -1,0 +1,39 @@
+/* == WooCommerce */
+.cart-customlocation{
+	
+	float:right;
+	clear:right;
+	margin-right:$gutter;
+	@include action();
+	&:before{
+		font-family: Genericons;
+		content:'\f447';
+		font-size:1.3em;
+		line-height: 1;
+		position:relative;
+		top:5px;
+		left:-3px;
+	}
+}
+.woocommerce #respond input#submit.alt, 
+.woocommerce a.button.alt, 
+.woocommerce button.button.alt, 
+.woocommerce input.button.alt{
+  background-color: $gradient-2;
+}
+
+.woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button{
+	@include action(#ddd);
+}
+.woocommerce ul.products li.product .price del{
+  display: inline;
+}
+
+/*price range slider color*/
+.woocommerce .widget_price_filter .ui-slider .ui-slider-handle,
+.woocommerce .widget_price_filter .ui-slider .ui-slider-range{
+  background-color: $gradient-2;
+}
+.woocommerce .widget_price_filter .price_slider_wrapper .ui-widget-content{
+  background-color: black;
+}

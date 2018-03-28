@@ -1,0 +1,12 @@
+{
+	"tokenColors": "./melissa.tmTheme",
+	"colors": {
+		"editor.background": "#0d0d0d",
+		"editorCursor.foreground": "#A7A7A7",
+		"editor.foreground": "#F8F8F8",
+		"editorWhitespace.foreground": "#FFFFFF40",
+		"editor.lineHighlightBackground": "#46494e",
+		"editor.selectionBackground": "#343e24"
+	},
+	"name": "Melissa Evening"
+}

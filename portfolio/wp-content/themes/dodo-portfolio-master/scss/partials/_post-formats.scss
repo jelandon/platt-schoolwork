@@ -1,0 +1,31 @@
+/* ==post formats */
+/*example of the post class*/
+.sticky{
+	@include shadow;
+	background-color: $sticky-color;
+	margin-top:$gutter;	
+}
+.format-quote {
+  @include gradient(lighten($gradient-1,45), lighten($gradient-2,45));
+  border-left: 10px solid $gradient-1;
+
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+  a{
+  	color:$gradient-1;
+  }
+  .postmeta{
+  	border: none;
+  }
+}
+.format-quote:before {
+  color: lighten($gradient-1, 5);
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+.format-quote p {
+  display: inline;
+}

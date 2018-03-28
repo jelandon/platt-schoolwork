@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<title>Neighborhood Camera Shop</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Arvo|Coustard|Crete+Round|Imprima|Montserrat|Montserrat+Alternates|Raleway:400,800" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+</head>
+<body>
+	<header>
+		<div class="logo-mask">
+			<div class="layer1">
+				<a href="index.html" class="logo" title="Homepage"><img src="images/logo2.svg" alt="Logo" width="100" height="100"></a>
+			</div>
+			<div class="layer2">
+				<a href="index.html" class="logo" title="Homepage"><img src="images/logo1.svg" alt="Logo" width="100" height="100"></a>
+			</div>
+		</div>
+		<ul id="nav-top">
+			<li><a href="pages/cameras.html" title="Visit our online Camera Gallery">Cameras</a></li>
+			<li><a href="pages/accessories.html" title="Visit our online Accessories Gallery">Accessories</a></li>
+			<li><a href="pages/repairs.html" title="Visit our Repairs Page">Repairs</a></li>
+		</ul>
+		<a href="pages/discover.html" class="button" title="Find our store or write us a note">Discover Us</a>
+	</header>
+	<div class="main-image">
+	</div>
+	<main id="content">
+		<h1>Welcome to Your<br>Neighborhood Camera Shop</h1>
+		<p class="subhead">
+			Thinking of buying a new camera? The hardest choice is deciding where to shop. With so many options, from big-box retailers to online dealers and everything in between, where you buy is critical to the long-term happiness with your choice. Our expert knowledge combined with friendly service provide helpful and insightful guidance as you find the camera that is perfect for you.
+		</p>
+		<div class="boxxes">
+			<article class="box">
+				<img src="images/staff.jpg" alt="Experienced Staff Taking Picture" width="270" height="180">
+				<h2>Experienced Staff</h2>
+				<p>
+					We love photography! Every member of our staff will gladly talk about <a href="pages/cameras.html" class="link">cameras</a> and techniques as long as someone wants to hear it. We can also pair your camera with perfect <a href="pages/accessories.html" class="link">accessories</a>, everything from optics to professional studio equipment. Come in today and talk with us!
+				</p>
+			</article>
+			<article class="box">
+				<img src="images/sky.jpg" alt="Girl Testing Camera Outside" width="270" height="180">
+				<h2>Try Before You Buy</h2>
+				<p>
+					<a href="pages/discover.html">Visit our showroom</a> to test any camera before you buy! Customers can take both indoor and outdoor test shots, then review their photos on our computer. Whatever you prefer to shoot on, we have more options than any local retailer so you can compare the most features.
+				</p>
+			</article>
+			<article class="box">
+				<img src="images/free.jpg" alt="Expert Performing Free Maintenance on Camera" width="270" height="180">
+				<h2>Free Maintenance</h2>
+				<p>
+					A camera can be a large investment and taking care of any mechanical parts and optics is critical. Every new camera purchased in our <a href="pages/discover.html">showroom</a> comes with a free maintenance visit. If something ever goes wrong with an NCS camera, the owner can bring it in for at <a href="pages/repairs.html">repair</a> or replacement.
+				</p>
+			</article>
+		</div>
+	</main>
+	<footer>
+		<ul id="nav-bottom">
+			<li><a href="pages/cameras.html">Cameras</a></li>
+			<li><a href="pages/accessories.html">Accessories</a></li>
+			<li><a href="pages/repairs.html">Repairs</a></li>
+			<li><a href="pages/discover.html">Discover Us</a></li>
+		</ul>
+		<p>
+			<span>&copy;</span> 2017 <a href="http://behance.net/jelandon" target="_blank">John Landon Designs</a>
+		</p>
+	</footer>
+
+	<script type="text/javascript" src="scripts/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="scripts/mixitup.min.js"></script>
+
+	<script type="text/javascript">
+		//change logo image when mouse hovers over it
+		$(".logo-mask").hover(function(){
+			$(".layer2").stop(true, true).fadeOut(150);
+			$(".layer1").stop(true, true).fadeIn(150);
+		},
+		function(){
+			$(".layer2").stop(true, true).fadeIn(150);
+			$(".layer1").stop(true, true).fadeOut(150);
+		});
+	</script>
+</body>
+</html>
